@@ -17,13 +17,19 @@ dungeons[0] = {
     isBeaten: false,
     isBeatable: function(){
 		if(items.bow)
-			return "available";
+			if(items.lantern)
+			    return "available";
+			else
+			    return "dark";
 		else
 			return "unavailable";
     },
     canGetChest: function(){
 		if(items.chest0>1 || items.bow)
-			return "available";
+			if(items.lantern)
+                return "available";
+            else
+                return "dark";
 		return "possible";
     }
 };
@@ -63,12 +69,16 @@ dungeons[2] = {
     image: "boss22.png",
     isBeaten: false,
     isBeatable: function(){
+        var maybeDark = "available";
+        if (items.glove && !items.lantern && !items.flute)
+            maybeDark = "dark";
+            
 		if(!items.flute && !items.glove)
 			return "unavailable";
 		if(!items.mirror && !(items.hookshot && items.hammer))
 			return "unavailable";
 		if(items.firerod || items.lantern)
-			return "available";
+			return maybeDark;
 		return "possible";
     },
     canGetChest: function(){
@@ -87,6 +97,8 @@ dungeons[3] = {
 			return "unavailable";
 		if(!items.agahnim && !items.glove)
 			return "unavailable";
+		if(!items.lantern)
+		    return "dark";
 		return "available";
     },
     canGetChest: function(){
@@ -230,8 +242,11 @@ dungeons[8] = {
 		if(medallions[8]==0 && !(items.bombos && items.ether && items.quake))
 			return "possible";
 
-		if(items.lantern || items.firerod)
+		if(items.lantern)
 			return "available";
+		if(items.firerod)
+		    return "dark";
+		    
 		return "possible";
     },
     canGetChest: function(){
@@ -275,7 +290,10 @@ dungeons[9] = {
 			return "unavailable";
 		if(medallions[9]==0 && !(items.bombos && items.ether && items.quake))
 			return "possible";
-
+       
+        if (!items.lantern && !items.flute)
+            return "dark";
+        
 		return "available";
     },
     canGetChest: function(){
@@ -293,8 +311,11 @@ dungeons[9] = {
 
 		if(!items.firerod)
 			return "possible";
-		if(items.chest9>1 || items.icerod)
+		if(items.chest9>1 || items.icerod) {
+		    if (!items.lantern && !items.flute)
+                return "dark";
 			return "available";
+	    }
 		return "possible";
     }
 };
@@ -342,8 +363,11 @@ chests[3] = {
     y: "9.3%",
     isOpened: false,
     isAvailable: function(){
+    var maybeDark = "available";
+    if (items.glove && !items.lantern && !items.flute)
+        maybeDark = "dark"
 	if ( (items["glove"] || items["flute"]) && (items["hookshot"] || (items["mirror"]&&items["hammer"])))
-		return "available";
+		return maybeDark;
 	return "unavailable";
     }
 };
@@ -364,8 +388,11 @@ chests[4] = {
 		if(medallions[9]==0 && !(items.bombos && items.ether && items.quake))
 			return "possible";
 
+        var maybeDark = "available";
+        if (items.glove && !items.lantern && !items.flute)
+            maybeDark = "dark"
 		if(items.firerod)
-			return "available";
+			return maybeDark;
 		return "possible";
     }
 };
@@ -442,8 +469,11 @@ chests[11] = {
     y: "14.7%",
     isOpened: false,
     isAvailable: function(){
+        var maybeDark = "available";
+        if (items.glove && !items.lantern && !items.flute)
+            maybeDark = "dark";
 		if( items["glove"]==2 && (items["hookshot"] || (items["mirror"]&&items["hammer"])) )
-			return "available";
+			return maybeDark;
 		return "unavailable";
     }
 };
@@ -464,8 +494,11 @@ chests[13] = {
     y: "14.9%",
     isOpened: false,
     isAvailable: function(){
+    var maybeDark = "available";
+    if (items.glove && !items.lantern && !items.flute)
+        maybeDark = "dark"
 	if( items["moonpearl"] && items["glove"] && items["hammer"] )
-		return "available";
+		return maybeDark;
 	return "unavailable";
     }
 };
@@ -481,7 +514,7 @@ chests[14] = {
 };
 
 chests[15] = {
-    name: "Thieve's Hut (4 + <img src='images/bomb.png' class='mini'>)",
+    name: "Thieves' Hut (4 + <img src='images/bomb.png' class='mini'>)",
     x: "6.4%",
     y: "41.0%",
     isOpened: false,
@@ -508,8 +541,11 @@ chests[17] = {
     y: "17.1%",
     isOpened: false,
     isAvailable: function(){
+    var maybeDark = "available";
+    if (items.glove && !items.lantern && !items.flute)
+        maybeDark = "dark"
 	if( (items["glove"] || items["flute"]) && (items["hookshot"] || (items["mirror"]&&items["hammer"])) )
-		return "available";
+		return maybeDark;;
 	return "unavailable";
 		
     }
@@ -554,8 +590,11 @@ chests[21] = {
     y: "8.6%",
     isOpened: false,
     isAvailable: function(){
+    var maybeDark = "available";
+    if (items.glove && !items.lantern && !items.flute)
+        maybeDark = "dark"
 	if(items.moonpearl && items.glove==2 && (items.hookshot || (items.mirror&&items.hammer&&items.boots)))
-					return "available";
+					return maybeDark;
 		return "unavailable";
     }
 };
@@ -566,8 +605,11 @@ chests[22] = {
     y: "3.4%",
     isOpened: false,
     isAvailable: function(){
+    var maybeDark = "available";
+    if (items.glove && !items.lantern && !items.flute)
+        maybeDark = "dark"
 	if( items.moonpearl && items.glove==2 && items.hookshot)
-					return "available";
+					return maybeDark;
 		return "unavailable";
     }
 };
@@ -662,8 +704,11 @@ chests[30] = {
     y: "3.0%",
     isOpened: false,
     isAvailable: function(){
+    var maybeDark = "available";
+    if (items.glove && !items.lantern && !items.flute)
+        maybeDark = "dark"
 	if( items.sword>=2 && items.book && (items.glove||items.flute) && (items.mirror || (items.hookshot&&items.hammer)) )
-		return "available";
+		return maybeDark;
 	return "unavailable";
     }
 };
@@ -711,7 +756,10 @@ chests[34] = {
     isOpened: false,
     isAvailable: function(){
 	if( items.glove || items.flute )
+	if (items.lantern)
 		return "available";
+	else
+	    return "dark";
 	return "unavailable";
     }
 };
@@ -756,8 +804,11 @@ chests[38] = {
     y: "14.8%",
     isOpened: false,
     isAvailable: function(){
+    var maybeDark = "available";
+    if (items.glove && !items.lantern && !items.flute)
+        maybeDark = "dark";
 	if( items.glove || items.flute )
-		return "available";
+		return maybeDark;
 	return "unavailable";
     }
 };
@@ -838,9 +889,12 @@ chests[45] = {
     y: "8.5%",
     isOpened: false,
     isAvailable: function(){
+    var maybeDark = "available";
+    if (items.glove && !items.lantern && !items.flute)
+        maybeDark = "dark";
 	if(items.glove || items.flute)
 		if(items.mirror)
-			return "available";
+			return maybeDark;
 		else
 			return "possible";
 	return "unavailable";
@@ -853,9 +907,12 @@ chests[46] = {
     y: "3.0%",
     isOpened: false,
     isAvailable: function(){
+        var maybeDark = "available";
+        if (items.glove && !items.lantern && !items.flute)
+            maybeDark = "dark";
 		if((items.glove || items.flute) && (items.hookshot || (items.hammer && items.mirror)) )
 			if(items.mirror && items.moonpearl && items.glove==2)
-				return "available";
+				return maybeDark;
 			else
 				return "possible";
 		return "unavailable";
