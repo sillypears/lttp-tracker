@@ -64,8 +64,6 @@ function loadCookie() {
 
     document.getElementsByName('showmap')[0].checked = !!cookieobj.map;
     document.getElementsByName('showmap')[0].onchange();
-    document.getElementsByName('itemdivsize')[0].value = cookieobj.iZoom;
-    document.getElementsByName('itemdivsize')[0].onchange();
     document.getElementsByName('mapdivsize')[0].value = cookieobj.mZoom;
     document.getElementsByName('mapdivsize')[0].onchange();
 
@@ -90,7 +88,6 @@ function saveCookie() {
     cookieobj = {};
 
     cookieobj.map = document.getElementsByName('showmap')[0].checked ? 1 : 0;
-    cookieobj.iZoom = document.getElementsByName('itemdivsize')[0].value;
     cookieobj.mZoom = document.getElementsByName('mapdivsize')[0].value;
 
 
