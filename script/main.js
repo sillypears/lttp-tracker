@@ -173,11 +173,12 @@ function setOrientation() {
 }
 
 function setZoom(target, sender) {
-    document.getElementById(target).style.zoom = sender.value / 100;
+    document.getElementById(target).style.transform = "scale(" + sender.value / 100 + ")";
 
     //    -moz-transform: scale(0.5);
-
+    
     document.getElementById(target + 'size').innerHTML = (sender.value) + '%';
+    
     saveCookie();
 }
 

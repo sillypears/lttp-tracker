@@ -136,7 +136,7 @@ label {
 }
 
 .itemdiv{
-    position: relative;
+    transform-origin: top left;
     left: 0px;
 }
 
@@ -144,8 +144,9 @@ label {
     background-image: url("images/map.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    
+    transform-origin: top left;
 
-    position: relative;
     width: 884px;
     height: 442px;
     left: 0px;
@@ -155,11 +156,18 @@ label {
     background-image: url("images/mapv.png");
     background-size: cover;
     background-repeat: no-repeat;
-
-    position: relative;
+    
+    transform-origin: top left;
+    
     width: 438px;
     height: 888px;
     left: 0px;
+}
+
+.caption{
+    position: relative;
+    top: 442px;
+    text-align: center;
 }
 
 .chest{
