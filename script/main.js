@@ -165,7 +165,7 @@ function highlight(x){
 
 function unhighlight(x){
     document.getElementById(x).style.backgroundImage = "url(images/poi.png)";
-    document.getElementById("caption").innerHTML = "&nbsp;";
+    document.getElementById("caption").innerHTML = "";
 }
 
 // Highlights a chest location and shows the name as caption (but for dungeons)
