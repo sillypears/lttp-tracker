@@ -176,7 +176,7 @@ function highlightDungeon(x){
 
 function unhighlightDungeon(x){
     document.getElementById("dungeon"+x).style.backgroundImage = "url(images/poi.png)";
-    document.getElementById("caption").innerHTML = "&nbsp;";
+    document.getElementById("caption").innerHTML = "";
 }
 
 function showChest(sender) {
